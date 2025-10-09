@@ -1,6 +1,4 @@
-##################
-STRING TO INTEGER
-##################
+########STRING TO INTEGER
 
 class Solution:
     def myAtoi(self, s: str) -> int:
