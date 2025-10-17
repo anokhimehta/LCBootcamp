@@ -64,4 +64,30 @@ class Solution:
             temp1, temp2 = first.next, second.next
             first.next, second.next, = second, temp1
             first, second = temp1, temp2
+
+
+####Set Matrix Zeroes
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+
+        rows = set()
+        cols = set()
+
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if (matrix[i][j] == 0):
+                    rows.add(i)
+                    cols.add(j)
+
+        for row in rows:
+            for col in range(len(matrix[0])):
+                matrix[row][col] = 0
+
+        for col in cols:
+            for row in range(len(matrix)):
+                matrix[row][col] = 0
+
         
