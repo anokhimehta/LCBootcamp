@@ -41,3 +41,36 @@ class MyQueue:
 # param_2 = obj.pop()
 # param_3 = obj.peek()
 # param_4 = obj.empty()
+
+
+
+#####PEOPLE AWARE OF SECRET
+class Solution:
+    def peopleAwareOfSecret(self, n: int, delay: int, forget: int) -> int:
+        
+        MOD = 10**9 + 7
+        #dp array is the array of new people who learned secret on day i
+        dp = [0] * (n+1)
+        #base case
+        dp[1] = 1
+
+        share = 0
+        #loop through rest of the days
+        for i in range(2, n+1):
+            #if delay period has passed they can share
+            if i - delay > 0:
+                share = (share + dp[i-delay]) % MOD
+
+            #remove people who forgot secret
+            if i - forget > 0:
+                share = (share - dp[i-forget]) % MOD
+
+            dp[i] = share
+
+        total = 0
+        #sum people in last forget days
+        for i in range(n - forget + 1, n+1):
+            total = (total + dp[i]) % MOD
+
+        return total
+            
